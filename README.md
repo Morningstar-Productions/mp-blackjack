@@ -3,6 +3,11 @@ Blackjack Script For QB-Core
 
 ## This Script is being picked up by xViperAG 
 
+## Special Thanks
+
+* Xinerki for the original standalone https://github.com/Xinerki/kgv-blackjack
+* Macky4546 and QBCore for maintaining the resource for QBCore Framework: https://github.com/macky4546/qb-blackjack
+
 # License
 
     QBCore Framework
