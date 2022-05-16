@@ -1,6 +1,8 @@
 # qb-blackjack
 Blackjack Script For QB-Core
 
+## This Script is being picked up by xViperAG 
+
 # License
 
     QBCore Framework
