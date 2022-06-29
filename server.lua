@@ -84,19 +84,36 @@ tableTracker = {
 	-- ["2"] = 1,
 }
 
---[===[
-	exports["kgv-blackjack"]:SetGetChipsCallback(function(source)
-		return 0 -- [[ return money ]]
-	end)
+exports["qb-blackjack"]:SetGetChipsCallback(function(source)
+    local Player = QBCore.Functions.GetPlayer(source)
+    local Chips = Player.Functions.GetItemByName("casinochips")
 
-	exports["kgv-blackjack"]:SetTakeChipsCallback(function(source, amount)
-		--[[ money = money - amount? ]]
-	end)
+    if Chips ~= nil then
+        Chips = Chips
+    end
 
-	exports["kgv-blackjack"]:SetGiveChipsCallback(function(source, amount)
-		--[[ money = money + amount? ]]
-	end)
---]===]
+    return TriggerClientEvent('QBCore:Notify', src, "You have no chips..")
+end)
+
+exports["qb-blackjack"]:SetTakeChipsCallback(function(source, amount)
+    local Player = QBCore.Functions.GetPlayer(source)
+
+    if Player ~= nil then
+        Player.Functions.RemoveItem("casinochips", amount)
+        TriggerClientEvent('inventory:client:ItemBox', source, QBCore.Shared.Items['casinochips'], "remove")
+        TriggerEvent("qb-log:server:CreateLog", "casino", "Chips", "yellow", "**"..GetPlayerName(source) .. "** put $"..amount.." in table")
+    end
+end)
+
+exports["qb-blackjack"]:SetGiveChipsCallback(function(source, amount)
+    local Player = QBCore.Functions.GetPlayer(source)
+
+    if Player ~= nil then
+        Player.Functions.AddItem("casinochips", amount)
+        TriggerClientEvent('inventory:client:ItemBox', source, QBCore.Shared.Items['casinochips'], "add")
+        TriggerEvent("qb-log:server:CreateLog", "casino", "Chips", "red", "**"..GetPlayerName(source) .. "** got $"..amount.." from table table and he won the double")
+    end
+end)
 
 getChipsCallback = nil
 takeChipsCallback = nil
