@@ -8,6 +8,10 @@ Blackjack Script For QB-Core
 * Xinerki for the original standalone https://github.com/Xinerki/kgv-blackjack
 * Macky4546 and QBCore for maintaining the resource for QBCore Framework: https://github.com/macky4546/qb-blackjack
 
+## qb-casino Missing? No Problem
+
+* Install sv_casino to your Server Side of qb-smallresources (This fixes the missing chips problem.)
+
 # License
 
     QBCore Framework
