@@ -1,7 +1,11 @@
 # qb-blackjack
 Blackjack Script For QB-Core
 
-## This Script is being picked up by xViperAG 
+## This Script is being picked up by xViperAG
+
+## Join the Discord
+
+* https://discord.gg/3CXrkvQVds
 
 ## Special Thanks
 
