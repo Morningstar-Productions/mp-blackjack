@@ -20,6 +20,7 @@ Blackjack Script For QB-Core
 * https://github.com/Bob74/bob74_ipl (FREE)
 * https://unclejust.tebex.io/package/4796051 (PAID)
 * https://3dstore.nopixel.net/package/5072402 (PAID)
+* https://fivem.gabzv.com/category/subscription (PAID)
 
 ## If using Gabz Interior
 
