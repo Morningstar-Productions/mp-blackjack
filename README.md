@@ -12,6 +12,15 @@ Blackjack Script For QB-Core
 
 * Install sv_casino to your Server Side of qb-smallresources (This fixes the missing chips problem.)
 
+## Need a Casino?
+
+### Here are some suggestions:
+
+* https://forum.cfx.re/t/cayo-perico-casino-dlc-ipl-loader/2099391 (FREE)
+* https://github.com/Bob74/bob74_ipl (FREE)
+* https://unclejust.tebex.io/package/4796051 (PAID)
+* https://3dstore.nopixel.net/package/5072402 (PAID)
+
 # License
 
     QBCore Framework
