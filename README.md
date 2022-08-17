@@ -107,14 +107,6 @@ tables = { -- Spawns Ped Only -- Setup Currently For This https://forum.cfx.re/t
 		highStakes = true
 	},
 }
-
---[[
-	Table colors
-	0: Green
-	1: Red
-	2: Blue
-	3: Purple
---]]
 ```
 
 * Add in Custom Tables for Gabz Interior
