@@ -28,7 +28,7 @@ Blackjack Script For QB-Core
 
 ## If using Gabz Interior
 
-Replace Elevator Locations
+* Replace Elevator Locations
 
 ```lua
 elevator_roof_location = {
@@ -46,7 +46,7 @@ elevator_entrance_location = {
 }
 ```
 
-Replace Table Locations
+* Replace Table Locations (Line 23 - 80)
 
 ```lua
 tables = { -- Spawns Ped Only -- Setup Currently For This https://forum.cfx.re/t/cayo-perico-casino-dlc-ipl-loader/2099391
@@ -115,7 +115,11 @@ tables = { -- Spawns Ped Only -- Setup Currently For This https://forum.cfx.re/t
 	2: Blue
 	3: Purple
 --]]
+```
 
+* Add in Custom Tables for Gabz Interior
+
+```lua
 customTables = { -- Spawns ped with table, example below
 	{
 		coords = vector4(-1394.8, -601.95, 35.51, 212.82),
@@ -178,6 +182,18 @@ customTables = { -- Spawns ped with table, example below
 		color = 3
 	},
 }
+```
+
+* Add this snippet to qb-smallresources/client/removeentities.lua after line 3 in local objects = {}
+
+```lua
+    -- Gabz Casino
+    {x = 1036.43, y = 51.77, z = 69.06, model = "vw_prop_casino_blckjack_01"},
+    {x = 1044.12, y = 53.47, z = 69.06, model = "vw_prop_casino_blckjack_01"}, 
+    {x = 1043.52, y = 56.33, z = 69.06, model = "vw_prop_casino_blckjack_01"}, 
+    {x = 1038.22, y = 55.68, z = 69.06, model = "vw_prop_casino_blckjack_01"},
+    {x = 1025.9, y = 61.5, z = 69.87, model = "vw_prop_casino_blckjack_01b"},
+    {x = 1030.79, y = 40.68, z = 69.87, model = "vw_prop_casino_blckjack_01b"},
 ```
 
 # License
