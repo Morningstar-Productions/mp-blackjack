@@ -16,6 +16,8 @@ Blackjack Script For QB-Core
 
 * Install sv_casino to your Server Side of qb-smallresources (This fixes the missing chips problem.)
 
+# Warning! MAKE SURE qb-blackjack STARTS BEFORE qb-smallresources!!! The export will NOT work unless you have it in this order.
+
 ## Need a Casino?
 
 ### Here are some suggestions:
