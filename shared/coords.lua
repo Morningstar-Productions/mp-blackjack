@@ -1,4 +1,3 @@
-
 _DEBUG = false
 
 function DebugPrint(str)
@@ -6,19 +5,6 @@ function DebugPrint(str)
 		return print("BLACKJACK: "..tostring(str))
 	end
 end
-
-elevator_roof_location = {
-	["x"] = 930.0716,
-	["y"] = 33.86854,
-	["z"] = 81.09772,
-	["a"] = 69.9051208
-}
-elevator_entrance_location = {
-	["x"] = 965.0619,
-	["y"] = 58.51287,
-	["z"] = 112.553,
-	["a"] = 53.0310745
-}
 
 tables = { -- Spawns Ped Only -- Setup Currently For This https://forum.cfx.re/t/cayo-perico-casino-dlc-ipl-loader/2099391
 	{
@@ -562,54 +548,11 @@ bettingNums = {
 	850000,
 	900000,
 	950000,
-	1000000,
-	1500000,
-	2000000,
-	2500000,
-	3000000,
-	3500000,
-	4000000,
-	4500000,
-	5000000,
-	5500000,
-	6000000,
-	6500000,
-	7000000,
-	7500000,
-	8000000,
-	8500000,
-	9000000,
-	9500000,
-	10000000,
+	1000000
 }
 
 bettingTime = 50
 moveTime = 30
---[[
-	case 10:
-		return joaat("vw_prop_chip_10dollar_x1");
-	case 50:
-		return joaat("vw_prop_chip_50dollar_x1");
-	case 100:
-		return joaat("vw_prop_chip_100dollar_x1");
-	case 500:
-		return joaat("vw_prop_chip_500dollar_x1");
-	case 1000:
-		return joaat("vw_prop_chip_1kdollar_x1");
-	case 5000:
-		return joaat("vw_prop_plaq_5kdollar_x1");
-	case 10000:
-		return joaat("vw_prop_plaq_10kdollar_x1");
-
-		vw_prop_chip_10kdollar_x1.ydr
-		vw_prop_chip_5kdollar_x1.ydr
-		vw_prop_chip_10kdollar_st.ydr -- $120,000
-		vw_prop_chip_5kdollar_st.ydr -- $60,000
-		vw_prop_vw_chips_pile_01a.ydr -- $511,000
-		vw_prop_vw_chips_pile_02a.ydr -- $3,250,000
-		vw_prop_vw_chips_pile_03a.ydr -- $1,990,000
-
---]]
 
 chipModels = {
 	[10] = "vw_prop_chip_10dollar_x1",

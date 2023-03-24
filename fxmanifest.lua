@@ -8,11 +8,12 @@ url 'https://github.com/Xinerki/kgv-blackjack'
 
 lua54 'yes'
 
-shared_script 'coords.lua'
+shared_script 'shared/coords.lua'
+shared_script 'shared/config.lua'
 
-client_script 'timerbars.lua'
-client_script 'client.lua'
-server_script 'server.lua'
+client_script 'client/timerbars.lua'
+client_script 'client/client.lua'
+server_script 'server/server.lua'
 
 data_file 'DLC_ITYP_REQUEST' 'stream/cards/vw_prop_vw_cards.ityp'
 data_file "PED_METADATA_FILE" "peds.meta"

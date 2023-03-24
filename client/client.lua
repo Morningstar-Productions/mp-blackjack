@@ -1249,8 +1249,8 @@ CreateThread(function()
 		local ped = PlayerPedId()
 		local pos = GetEntityCoords(ped)
 
-		local tploc_enter = elevator_entrance_location
-		local tploc_exit = elevator_roof_location
+		local tploc_enter = Config.elevator_entrance_location
+		local tploc_exit = Config.elevator_roof_location
 		local dist = #(pos - vector3(tploc_enter.x, tploc_enter.y, tploc_enter.z))
 		if dist < 10 then
 			sleep = 5
@@ -1264,8 +1264,8 @@ CreateThread(function()
 			end
 		end
 
-		local tploc_enter = elevator_roof_location
-		local tploc_exit = elevator_entrance_location
+		local tploc_enter = Config.elevator_roof_location
+		local tploc_exit = Config.elevator_entrance_location
 		local dist = #(pos - vector3(tploc_enter.x, tploc_enter.y, tploc_enter.z))
 		if dist < 10 then
 			sleep = 5
