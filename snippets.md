@@ -158,7 +158,7 @@ customTables = { -- Spawns ped with table, example below
 }
 ```
 
-* New Money Features:
+# New Money Features:
 
 ```lua
 	-- Add New Money Type to qb-core/config.lua or qbx_core/configs/server.lua
@@ -180,4 +180,74 @@ customTables = { -- Spawns ped with table, example below
         paycheckTimeout = 10, -- The time in minutes that it will give the paycheck
         paycheckSociety = false -- If true paycheck will come from the society account that the player is employed at, requires qb-management
     },
+```
+
+* If using ox_inventory (TEST AT OWN RISK):
+
+```lua
+	-- Add to setupPlayer() in ox_inventory/modules/bridge/qb/server.lua
+
+	Inventory.SetItem(Player.PlayerData.source, 'casinochips', Player.PlayerData.money.casino)
+```
+
+```lua
+	-- Change this code:
+
+				if not hasThis then
+					local amount = player.Functions.GetMoney(name == 'money' and 'cash' or name)
+
+					if amount then
+						items[#items + 1] = { name = name, amount = amount }
+					end
+				end
+
+	-- To this:
+				if not hasThis then
+					local amount = player.Functions.GetMoney(name == 'money' and 'cash' or name)
+					local amountCasino = player.Functions.GetMoney(name == 'casinochips' and 'casino' or name)
+
+					if amount then
+						items[#items + 1] = { name = name, amount = amount }
+					end
+
+					if amountCasino then
+						items[#items + 1] = { name = name, amount = amountCasino }
+					end
+				end
+```
+
+```lua
+-- Change this
+
+AddEventHandler('QBCore:Server:OnMoneyChange', function(src, account, amount, changeType)
+	if account ~= "cash" then return end
+
+	local item = Inventory.GetItem(src, 'money', nil, false)
+
+    if not item then return end
+
+	Inventory.SetItem(src, 'money', changeType == "set" and amount or changeType == "remove" and item.count - amount or changeType == "add" and item.count + amount)
+end)
+
+-- To this
+
+AddEventHandler('QBCore:Server:OnMoneyChange', function(src, account, amount, changeType)
+	if account ~= "cash" or account ~= "casino" then return end
+
+	local item = Inventory.GetItem(src, 'money', nil, false)
+	local item2 = Inventory.GetItem(src, 'casinochips', nil, false)
+
+    if not item then return end
+	if not item2 then return end
+
+	Inventory.SetItem(src, 'money', changeType == "set" and amount or changeType == "remove" and item.count - amount or changeType == "add" and item.count + amount)
+	Inventory.SetItem(src, 'casinochips', changeType == "set" and amount or changeType == "remove" and item.count - amount or changeType == "add" and item.count + amount)
+end)
+```
+
+```lua
+-- Add this line to server.syncInventory(inv)
+        if accounts.casino and accounts.casino ~= player.Functions.GetMoney('casino') then
+			player.Functions.SetMoney('casino', accounts.casino, "Sync money with inventory")
+		end
 ```
