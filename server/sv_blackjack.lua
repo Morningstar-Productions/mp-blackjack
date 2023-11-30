@@ -1,5 +1,3 @@
-local QBCore = exports['qb-core']:GetCoreObject()
-
 ranks = {'02', '03', '04', '05', '06', '07', '08', '09', '10', --[['11',]] 'JACK', 'QUEEN', 'KING', 'ACE'}
 suits = {'SPD', 'HRT', 'DIA', 'CLUB'}
 
@@ -166,22 +164,25 @@ function PlayDealerSpeech(dealer, speech)
 end
 
 function SetPlayerBet(i, seat, bet, betId, double, split)
+	local src = source
+	local index = i
+
 	split = split or false
 	double = double or false
 
-
-	local num = FindPlayerIdx(players[i], source)
+	local num = FindPlayerIdx(players[index], src)
 
 	if num ~= nil then
 		if double == false and split == false then
-			TakeMoney(source, bet)
+			TakeMoney(src, bet)
+			print(index, 5 - seat, bet, double, split)
 
 			players[i][num].bet = tonumber(bet)
 		end
 
-		TriggerClientEvent("BLACKJACK:PlaceBetChip", -1, i, 5-seat, bet, double, split)
+		TriggerClientEvent("BLACKJACK:PlaceBetChip", src, index, 5 - seat, bet, double, split)
 	else
-		DebugPrint("TABLE "..i..": PLAYER "..source.." ATTEMPTED BET BUT NO LONGER TRACKED?")
+		DebugPrint("TABLE "..i..": PLAYER "..src.." ATTEMPTED BET BUT NO LONGER TRACKED?")
 	end
 end
 
@@ -190,26 +191,15 @@ AddEventHandler('BLACKJACK:SetPlayerBet', SetPlayerBet)
 
 function CheckPlayerBet(i, bet)
 	local Player = QBCore.Functions.GetPlayer(source)
-	local ItemList = {
-		["casinochips"] = 1,
-	}
 
 	DebugPrint("TABLE "..i..": CHECKING "..GetPlayerName(source):upper().."'s CHIPS")
 
-	local playerChips = Player.Functions.GetItemByName("casinochips")
+	local playerChips = Player.Functions.GetMoney('casino')
 
 	local canBet = false
 
-    if Player.PlayerData.items ~= nil and next(Player.PlayerData.items) ~= nil then
-        for k, v in pairs(Player.PlayerData.items) do
-            if Player.PlayerData.items[k] ~= nil then
-				if ItemList[Player.PlayerData.items[k].name] ~= nil then
-					if playerChips.amount >= bet then
-					canBet = true
-					end
-                end
-            end
-        end
+	if playerChips >= bet then
+		canBet = true
 	end
 
 	TriggerClientEvent("BLACKJACK:BetReceived", source, canBet)
@@ -227,17 +217,6 @@ function StartTableThread(i)
 		while true do Wait(0)
 			if players[index] and #players[index] ~= 0 then
 				DebugPrint("WAITING FOR ALL PLAYERS AT TABLE "..index.." TO PLACE THEIR BETS.")
-
-				-- TODO: DONT FORGET TO REMOVE THIS JESUS CHRIST
-
-				-- local bet = 15000
-
-				-- TakeMoney(players[index][1].player, bet)
-				-- players[index][1].bet = bet
-
-				-- for num,_ in pairs(players[index]) do
-					-- TriggerClientEvent("BLACKJACK:RequestBets", players[index][num].player)
-				-- end
 
 				PlayDealerAnim(index, "anim_casino_b@amb@casino@games@blackjack@dealer", "female_place_bet_request")
 				PlayDealerSpeech(index, "MINIGAME_DEALER_PLACE_CHIPS")
@@ -845,27 +824,6 @@ function PlayerSatDown(i, seat)
 	-- PlayDealerSpeech(i, "MINIGAME_DEALER_GREET")
 
 	TriggerClientEvent("BLACKJACK:RequestBets", source, i)
-
-	-- DebugPrint(#players[i])
-
-	-- CreateThread(function()
-		-- local deck = getDeck()
-
-		-- local card1 = takeCard(deck)
-		-- TriggerClientEvent("BLACKJACK:GiveCard", player, index, card1)
-		-- TriggerClientEvent("BLACKJACK:ANIM:DealCard", -1, index, chair)
-
-		-- Wait(3000)
-
-		-- local card2 = takeCard(deck)
-		-- TriggerClientEvent("BLACKJACK:GiveCard", player, index, card2)
-		-- TriggerClientEvent("BLACKJACK:ANIM:DealCard", -1, index, chair)
-	-- end)
-
-	-- local card1 = takeCard(deck)
-	-- local card2 = takeCard(deck)
-
-	-- TriggerEvent('_chat:messageEntered', GetPlayerName(source), {0, 0, 0}, "has " .. handValue({card1, card2}) .. " ("..cardValue(card1)..", "..cardValue(card2)..")")
 end
 
 RegisterServerEvent("BLACKJACK:PlayerSatDown")

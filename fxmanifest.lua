@@ -1,19 +1,16 @@
 fx_version 'adamant'
 game "gta5"
 
-name 'qb-blackjack'
+name 'mp-blackjack'
 description 'Playable Blackjack at the casino, similar to GTAOnline.'
-author 'Xinerki - https://github.com/Xinerki/'
-url 'https://github.com/Xinerki/kgv-blackjack'
+author 'xViperAG - https://github.com/xViperAG/ - Credit to Xinerki'
+url 'https://github.com/Morningstar-Development/mp-blackjack'
 
 lua54 'yes'
 
-shared_script 'shared/coords.lua'
-shared_script 'shared/config.lua'
-
-client_script 'client/timerbars.lua'
-client_script 'client/client.lua'
-server_script 'server/server.lua'
+shared_scripts { 'coords.lua', '@ox_lib/init.lua' }
+client_scripts { 'client/timerbars.lua', 'client/cl_blackjack.lua' }
+server_scripts { 'server/sv_blackjack.lua', 'server/sv_casino.lua' }
 
 data_file 'DLC_ITYP_REQUEST' 'stream/cards/vw_prop_vw_cards.ityp'
 data_file "PED_METADATA_FILE" "peds.meta"
